@@ -21,3 +21,27 @@ html, body {
 #app {
 	height: 100%;
 }
+
+button {
+	background-color: @accentColor;
+	border: none;
+	border-radius: 2px;
+	color: @textPrimaryColor;
+	font-size: .8rem;
+	padding: 12px;
+	text-transform: uppercase;
+	transition: .3s all;
+	&:hover, &:focus {
+		transform: scale(1.02);
+	}
+	&:active {
+		background-color: @darkAccentColor;
+	}
+}
+input:not([type="submit"]) {
+	border-radius: 2px;
+	border: 1px solid rgba(0,0,0,.1);
+	font-size: 1.1rem;
+	padding: 8px;
+	text-align: center;
+}
