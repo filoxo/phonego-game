@@ -4,6 +4,7 @@ import { Router } from 'preact-router';
 import Header from './header';
 import Home from '../routes/home';
 import Profile from '../routes/profile';
+import firebase from '../lib/firebase.js';
 // import Home from 'async!./home';
 // import Profile from 'async!./profile';
 
