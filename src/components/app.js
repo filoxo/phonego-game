@@ -1,10 +1,10 @@
-import { h, Component } from 'preact';
-import { Router } from 'preact-router';
+import { h, Component } from 'preact'
+import { Router } from 'preact-router'
 
-import Header from './header';
-import Home from '../routes/home';
-import Profile from '../routes/profile';
-import firebase from '../lib/firebase.js';
+import Header from './header'
+import Home from '../routes/home'
+import Profile from '../routes/profile'
+import firebase from '../lib/firebase.js'
 // import Home from 'async!./home';
 // import Profile from 'async!./profile';
 
@@ -14,8 +14,8 @@ export default class App extends Component {
 	 *	@param {string} event.url	The newly routed URL
 	 */
 	handleRoute = e => {
-		this.currentUrl = e.url;
-	};
+		this.currentUrl = e.url
+	}
 
 	render() {
 		return (
@@ -27,6 +27,6 @@ export default class App extends Component {
 					<Profile path="/profile/:user" />
 				</Router>
 			</div>
-		);
+		)
 	}
 }

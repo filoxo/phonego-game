@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase from 'firebase'
 const config = {
 	apiKey: 'AIzaSyC0KPFcsWgqS-HgsGYJOTTAoUfwEcBHPNY',
 	authDomain: 'phonego-game.firebaseapp.com',
@@ -6,6 +6,6 @@ const config = {
 	projectId: 'phonego-game',
 	storageBucket: 'phonego-game.appspot.com',
 	messagingSenderId: '76249003047'
-};
-firebase.initializeApp(config);
-export default firebase;
+}
+firebase.initializeApp(config)
+export default firebase
