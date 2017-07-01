@@ -7,7 +7,9 @@ export default class Header extends Component {
 		return (
 			<header class={style.header}>
 				<h1 class={style.left}>PhoneGo!</h1>
-				<p class={style.right}>Username</p>
+				<p class={style.right}>
+					{this.props.username}
+				</p>
 			</header>
 		)
 	}
