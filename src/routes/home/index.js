@@ -22,12 +22,13 @@ export default class Home extends Component {
 				user.updateProfile({ displayName: this.state.value })
 			})
 			.catch(console.log)
+		this.props.init(this.state.value)
 	}
 	render() {
 		return (
 			<div class={style.home}>
 				<h2>Welcome!</h2>
-				<form onSubmit={this.handleSubmit}>
+				<form onSubmit={this.handleSubmit} name="game">
 					{this.props.username === null &&
 						<div>
 							<input
@@ -40,7 +41,8 @@ export default class Home extends Component {
 							<hr />
 						</div>}
 					<div>
-						<input type="text" name="name" placeholder="Enter Room Code" />
+						<input type="text" name="roomCode" placeholder="Enter Room Code" />
+						<button type="submit">Join</button>
 					</div>
 					<div>&mdash;&nbsp;or&nbsp;&mdash;</div>
 					<button type="submit">Start a new game</button>

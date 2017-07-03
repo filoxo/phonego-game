@@ -12,6 +12,7 @@ import 'firebase/auth'
 export default class App extends Component {
 	constructor(props) {
 		super(props)
+		this.gamesRef = firebase.database().ref('games')
 		firebase.auth().onAuthStateChanged(user => {
 			if (user) {
 				this.setState({ username: user.displayName })
@@ -19,6 +20,7 @@ export default class App extends Component {
 				console.log('unauthenticated')
 			}
 		})
+		this.init = this.init.bind(this)
 	}
 
 	/** Gets fired when the route changes.
@@ -29,12 +31,25 @@ export default class App extends Component {
 		this.currentUrl = e.url
 	}
 
+	init(code) {
+		code !== undefined && code !== '' ? this.joinGame(code) : this.createGame()
+	}
+
+	createGame() {
+		const game = this.gamesRef.push().key
+		this.gamesRef.update({ [game]: { players: [this.state.username] } })
+	}
+
+	joinGame(roomCode) {
+		console.log(roomCode)
+	}
+
 	render() {
 		return (
 			<div id="app">
 				<Header username={this.state.username} />
 				<Router onChange={this.handleRoute}>
-					<Home path="/" username={this.state.username} />
+					<Home path="/" username={this.state.username} init={this.init} />
 					<Profile path="/profile/" user="me" />
 					<Profile path="/profile/:user" />
 				</Router>
