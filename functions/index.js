@@ -1,5 +1,5 @@
 const functions = require('firebase-functions'),
-	sortid = require('shortid32'),
+	shortid = require('shortid32'),
 	admin = require('firebase-admin')
 
 admin.initializeApp(functions.config().firebase)
