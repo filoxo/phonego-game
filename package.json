@@ -36,6 +36,8 @@
   "dependencies": {
     "preact": "^8.1.0",
     "preact-compat": "^3.16.0",
-    "preact-router": "^2.5.2"
+    "preact-router": "^2.5.2",
+    "firebase-admin": "~4.2.1",
+    "firebase-functions": "^0.5.7"
   }
 }
