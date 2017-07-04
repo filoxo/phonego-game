@@ -31,12 +31,18 @@ button {
 	padding: 12px;
 	text-transform: uppercase;
 	transition: .3s all;
-	&:hover, &:focus {
-		transform: scale(1.02);
-	}
-	&:active {
-		background-color: @darkAccentColor;
-	}
+    &:not([disabled]) {
+      &:hover, &:focus {
+        transform: scale(1.02);
+        background-color: lighten(@accentColor, 3%);
+      }
+      &:active {
+        background-color: @darkAccentColor;
+      }
+    }
+    &[disabled] {
+       background-color: @dividerColor;
+    }
 }
 input:not([type="submit"]) {
 	border-radius: 2px;
