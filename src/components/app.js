@@ -1,10 +1,11 @@
 import { h, Component } from 'preact'
-import { Router } from 'preact-router'
+import { Router, route } from 'preact-router'
 
 import Header from './header'
 import Home from '../routes/home'
 import Profile from '../routes/profile'
 import firebase from '../lib/firebase.js'
+import Game from '../routes/game'
 import 'firebase/auth'
 // import Home from 'async!./home';
 // import Profile from 'async!./profile';
@@ -38,6 +39,10 @@ export default class App extends Component {
 	createGame() {
 		const game = this.gamesRef.push().key
 		this.gamesRef.update({ [game]: { players: [this.state.username] } })
+		this.gamesRef.child(game).on('value', snapshot => {
+			this.setState({ game: snapshot.val() })
+			route(`/game/${snapshot.sid}`)
+		})
 	}
 
 	joinGame(roomCode) {
@@ -50,8 +55,7 @@ export default class App extends Component {
 				<Header username={this.state.username} />
 				<Router onChange={this.handleRoute}>
 					<Home path="/" username={this.state.username} init={this.init} />
-					<Profile path="/profile/" user="me" />
-					<Profile path="/profile/:user" />
+					<Game path="/game/:id" game={this.state.game} />
 				</Router>
 			</div>
 		)
