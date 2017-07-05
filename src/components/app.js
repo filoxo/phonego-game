@@ -3,12 +3,10 @@ import { Router, route } from 'preact-router'
 
 import Header from './header'
 import Home from '../routes/home'
-import Profile from '../routes/profile'
 import firebase from '../lib/firebase.js'
 import Game from '../routes/game'
 import 'firebase/auth'
 // import Home from 'async!./home';
-// import Profile from 'async!./profile';
 
 export default class App extends Component {
 	constructor(props) {
