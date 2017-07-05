@@ -47,6 +47,17 @@ export default class App extends Component {
 
 	joinGame(roomCode) {
 		console.log(roomCode)
+		this.gamesRef
+			.orderByChild('sid')
+			.equalTo(roomCode)
+			.once('value', snapshot => {
+				console.log(snapshot.val())
+				if (snapshot.val() === null) {
+					console.log('GAME DOES NOT EXIST')
+				} else {
+					route(`/game/${roomCode}`)
+				}
+			})
 	}
 
 	render() {
