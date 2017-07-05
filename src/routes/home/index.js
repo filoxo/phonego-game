@@ -6,43 +6,36 @@ import 'firebase/auth'
 export default class Home extends Component {
 	constructor(props) {
 		super(props)
-		this.state = { value: '' }
-		this.handleSubmit = this.handleSubmit.bind(this)
+		this.state = { roomCode: '', validRoomCode: false }
 		this.handleChange = this.handleChange.bind(this)
+		this.handleSubmit = this.handleSubmit.bind(this)
 	}
 	handleChange(event) {
-		this.setState({ value: event.target.value })
+		const { value } = event.target
+		this.setState({ roomCode: value, validRoomCode: value.length === 8 })
 	}
 	handleSubmit(event) {
 		event.preventDefault()
-		firebase
-			.auth()
-			.signInAnonymously()
-			.then(user => {
-				user.updateProfile({ displayName: this.state.value })
-			})
-			.catch(console.log)
-		this.props.init(this.state.value)
+		firebase.auth().signInAnonymously().catch(console.log)
+		this.props.init(this.state.roomCode)
 	}
 	render() {
 		return (
-			<div class={style.home}>
+			<div className={style.home}>
 				<h2>Welcome!</h2>
 				<form onSubmit={this.handleSubmit} name="game">
-					{this.props.username === null &&
-						<div>
-							<input
-								type="text"
-								name="name"
-								placeholder="Enter your name"
-								value={this.state.value}
-								onChange={this.handleChange}
-							/>
-							<hr />
-						</div>}
-					<div>
-						<input type="text" name="roomCode" placeholder="Enter Room Code" />
-						<button type="submit">Join</button>
+					<div className={style.btngrp}>
+						<input
+							type="text"
+							name="roomCode"
+							placeholder="Enter Room Code"
+							maxLength="8"
+							value={this.state.roomCode}
+							onInput={this.handleChange}
+						/>
+						<button type="submit" disabled={!this.state.validRoomCode}>
+							Join
+						</button>
 					</div>
 					<div>&mdash;&nbsp;or&nbsp;&mdash;</div>
 					<button type="submit">Start a new game</button>
